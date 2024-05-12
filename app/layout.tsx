@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { figtree } from "@/app/ui/fonts";
+import "@/app/ui/global.css";
+import localfont from 'next/font/local';
 
-const inter = Inter({ subsets: ["latin"] });
+export const cwc = localfont({
+  src: "./CWC-Bold.otf",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${figtree.className} antialiased`}>{children}</body>
     </html>
   );
 }

@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Venue {
+  id                String   @id @default(uuid())
+  name              String
+  stadiumPhotoSmall String?
+  stadiumPhotoLarge String?
+  matches           Match[]
+}
+
+model Team {
+  id       String  @id @default(uuid())
+  name     String
+  flagIcon String
+  team1    Match[] @relation("Team1")
+  team2    Match[] @relation("Team2")
+}
+
+model Match {
+  id                String   @id @default(uuid())
+  team1Id           String
+  team1             Team     @relation("Team1", fields: [team1Id], references: [id])
+  team2Id           String
+  team2             Team     @relation("Team2", fields: [team2Id], references: [id])
+  matchNameCompact  String
+  matchNameFull     String
+  dateFull          String
+  dateShort         String
+  time              String
+  venueId           String
+  venue             Venue    @relation(fields: [venueId], references: [id])
+  onSale            Boolean
+  startingPrice     String
+  photoUrl          String
+  matchTickets      MatchTicket[]
+}
+
+model TicketType {
+  id           String        @id @default(uuid())
+  name         String
+  matchTickets MatchTicket[]
+}
+
+model Tariff {
+  id           String        @id @default(uuid())
+  name         String
+  saleType     String
+  matchTickets MatchTicket[]
+}
+
+model MatchTicket {
+  id           String   @id @default(uuid())
+  matchId      String
+  match        Match    @relation(fields: [matchId], references: [id])
+  ticketTypeId String
+  ticketType   TicketType @relation(fields: [ticketTypeId], references: [id])
+  tariffId     String
+  tariff       Tariff   @relation(fields: [tariffId], references: [id])
+  price        String
+}
+
