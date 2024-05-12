@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-const venues = [
+export const venues = [
     {
         "id": uuidv4(),
         "name":"Arnos Vale Stadium, Saint Vincent and The Grenadines",
@@ -57,7 +57,7 @@ const venues = [
     },
 ];
 
-const teams = [
+export const teams = [
     {
         "id": uuidv4(),
         "name": "A1",
@@ -205,7 +205,7 @@ const teams = [
     },
 ]
 
-const matches = [
+export const matches = [
     {
         "id": uuidv4(),
         "team1Id": teams[27].id,
@@ -264,7 +264,7 @@ const matches = [
       },
 ]
 
-const ticketTypes = [
+export const ticketTypes = [
     {
       "id": uuidv4(),
       "name": "Grass & Mound"
@@ -299,7 +299,7 @@ const ticketTypes = [
     }
   ]
 
-const tariffs = [
+  export const tariffs = [
     {
       "id": uuidv4(),
       "name": "Full Price",
@@ -312,7 +312,7 @@ const tariffs = [
     }
   ]  
 
-const matchTickets = [
+  export const matchTickets = [
     {
       "id": uuidv4(),
       "matchId": matches[0].id,
@@ -406,11 +406,3 @@ const matchTickets = [
     }
 ]
 
-module.exports = {
-    venues,
-    teams,
-    matches,
-    ticketTypes,
-    tariffs,
-    matchTickets
-};
