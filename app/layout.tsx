@@ -3,10 +3,10 @@ import { figtree } from "@/app/ui/fonts";
 import "@/app/ui/global.css";
 import localfont from 'next/font/local';
 
-export const cwc = localfont({
-  src: "./CWC-Bold.otf",
-  display: "swap",
-});
+// export const cwc = localfont({
+//   src: "./CWC-Bold.otf",
+//   display: "swap",
+// });
 
 export const metadata: Metadata = {
   title: "Create Next App",
