@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { figtree } from "@/app/ui/fonts";
 import "@/app/ui/global.css";
 import localfont from 'next/font/local';
+import {Providers} from "./providers";
 
-// export const cwc = localfont({
-//   src: "./CWC-Bold.otf",
-//   display: "swap",
-// });
+ export const cwc = localfont({
+   src: "./CWC-Bold.otf",
+   display: "swap",
+ });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,8 +20,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${figtree.className} antialiased`}>{children}</body>
+    <html lang="en" className="dark">
+      <body className={`${figtree.className} antialiased`}>
+      <Providers>
+        {children}
+      </Providers>
+      </body>
     </html>
   );
 }
